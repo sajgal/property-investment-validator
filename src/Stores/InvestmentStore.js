@@ -1,14 +1,29 @@
-import { observable, computed, action, decorate } from 'mobx';
+import { observable, action, decorate, computed } from 'mobx';
 
 class InvestmentStore {
-  expenses = 0;
+  purchasePrice = 0;
+  income = 0;
 
-  addExpenses() {
-    this.expenses = this.expenses + 10;
+  onPurchasePriceChange(purchasePrice) {
+    this.purchasePrice = purchasePrice;
+  }
+
+  onIncomeChange(income) {
+    this.income = income;
+  }
+
+  get profit() {
+    const profit = this.income - this.purchasePrice;
+    return `$ ${profit}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
 export default decorate(InvestmentStore, {
-  expenses: observable,
-  addExpenses: action.bound,
+  purchasePrice: observable,
+  income: observable,
+
+  profit: computed,
+
+  onPurchasePriceChange: action.bound,
+  onIncomeChange: action.bound,
 });
