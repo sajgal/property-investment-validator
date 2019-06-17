@@ -1,7 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
+import { Provider } from 'mobx-react';
 
+import RootStore from './Stores/RootStore';
 import InvestmentForm from './InvestmentForm';
 
 const Wrapper = styled.section`
@@ -11,9 +13,11 @@ const Wrapper = styled.section`
 
 function App() {
   return (
-    <Wrapper>
-      <InvestmentForm />
-    </Wrapper>
+    <Provider rootStore={new RootStore()}>
+      <Wrapper>
+        <InvestmentForm />
+      </Wrapper>
+    </Provider>
   );
 }
 
