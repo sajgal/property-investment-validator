@@ -2,28 +2,28 @@ import { observable, action, decorate, computed } from 'mobx';
 
 class InvestmentStore {
   purchasePrice = 0;
-  income = 0;
+  monthlyRentalIncome = 0;
 
   onPurchasePriceChange(purchasePrice) {
     this.purchasePrice = purchasePrice;
   }
 
-  onIncomeChange(income) {
-    this.income = income;
+  onMonthlyRentalIncomeChange(income) {
+    this.monthlyRentalIncome = income;
   }
 
   get profit() {
-    const profit = this.income - this.purchasePrice;
+    const profit = this.monthlyRentalIncome - this.purchasePrice;
     return `$ ${profit}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
 export default decorate(InvestmentStore, {
   purchasePrice: observable,
-  income: observable,
+  monthlyRentalIncome: observable,
 
   profit: computed,
 
   onPurchasePriceChange: action.bound,
-  onIncomeChange: action.bound,
+  onMonthlyRentalIncomeChange: action.bound,
 });
