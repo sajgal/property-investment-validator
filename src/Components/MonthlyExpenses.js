@@ -32,10 +32,6 @@ class MonthlyExpenses extends React.Component {
     });
   };
 
-  onExpenseChange = (k, e) => {
-    console.log('k, e', k, e);
-  }
-
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
@@ -50,10 +46,11 @@ class MonthlyExpenses extends React.Component {
     };
     const formItemLayoutWithOutLabel = {
       wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 20, offset: 4 },
+        xs: { span: 24, offset: 24 },
+        sm: { span: 16, offset: 8 },
       },
     };
+
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
     const formItems = keys.map((k, index) => (
@@ -65,21 +62,16 @@ class MonthlyExpenses extends React.Component {
       >
         {getFieldDecorator(`names[${k}]`, {})(
           <span>
-            <Input placeholder="expense label (optional)" style={{ width: '50%', marginRight: 8 }} />
-            <InputNumber placeholder="expense amount" style={{ width: '45%', marginRight: 8 }} onChange={(e) => this.onExpenseChange(k, e)} />
+            <Input placeholder="expense label (optional)" style={{ width: '50%', marginRight: 8 }} onChange={(label) => this.props.onExpenseLabelChange(k, label)} />
+            <InputNumber
+              placeholder="expense amount"
+              formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              parser={value => value.replace(/\$\s?|(,*)/g, '')}
+              precision={0}
+              style={{ width: '45%', marginRight: 8 }}
+              onChange={(value) => this.props.onExpensePriceChange(k, value)} />
           </span>
         )}
-
-        {/* {getFieldDecorator(`names[${k}]`, {
-          validateTrigger: ['onChange', 'onBlur'],
-          rules: [
-            {
-              required: true,
-              whitespace: true,
-              message: "Please input expenses or delete this field.",
-            },
-          ],
-        })(<span><Input placeholder="expense label" style={{ width: '50%', marginRight: 8 }} /><InputNumber placeholder="expense amount" style={{ width: '45%', marginRight: 8 }} onChange={this.onExpenseChange} /></span>)} */}
         {keys.length > 1 ? (
           <Icon
             className="dynamic-delete-button"
@@ -93,7 +85,7 @@ class MonthlyExpenses extends React.Component {
       <span>
         {formItems}
         <Form.Item {...formItemLayoutWithOutLabel}>
-          <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
+          <Button type="dashed" onClick={this.add}>
             <Icon type="plus" /> Add expense
           </Button>
         </Form.Item >
@@ -103,5 +95,6 @@ class MonthlyExpenses extends React.Component {
 }
 
 export default inject(stores => ({
-  onPurchasePriceChange: stores.rootStore.investmentStore.onPurchasePriceChange,
+  onExpensePriceChange: stores.rootStore.investmentStore.onExpensePriceChange,
+  onExpenseLabelChange: stores.rootStore.investmentStore.onExpenseLabelChange,
 }))(MonthlyExpenses);

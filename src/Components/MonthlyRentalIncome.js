@@ -12,9 +12,9 @@ const MonthlyRentalIncome = (props) => {
       <InputNumber
         formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         parser={value => value.replace(/\$\s?|(,*)/g, '')}
+        precision={0}
         onChange={onChange}
         style={{width: "100%"}}
-        precision={0}
       />
     </Form.Item>
   );
