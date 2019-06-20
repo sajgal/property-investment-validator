@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, InputNumber } from 'antd';
+import { Form, InputNumber, Tooltip, Icon } from 'antd';
 import { inject } from 'mobx-react';
 
 const PurchasePrice = (props) => {
@@ -8,11 +8,19 @@ const PurchasePrice = (props) => {
   }
 
   return (
-    <Form.Item label="Purchase Price">
+    <Form.Item label={
+      <span>
+        Purchase Price&nbsp;
+        <Tooltip title="Price of purchased real property.">
+          <Icon type="question-circle-o" />
+        </Tooltip>
+      </span>
+    }>
       <InputNumber
         formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         parser={value => value.replace(/\$\s?|(,*)/g, '')}
         onChange={onChange}
+        style={{ width: "100%" }}
       />
     </Form.Item>
 

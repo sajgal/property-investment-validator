@@ -3,6 +3,9 @@ import { observable, action, decorate, computed } from 'mobx';
 class InvestmentStore {
   purchasePrice = 0;
   monthlyRentalIncome = 0;
+  downPaymentPercentage = 0;
+  rehabPrice = 0;
+  closingCosts = 0;
   expensePrices = {};
   expenseLabels = {};
 
@@ -22,6 +25,18 @@ class InvestmentStore {
     this.expenseLabels[index] = label;
   }
 
+  onDownPaymentChange(downPaymentPercentage) {
+    this.downPaymentPercentage = downPaymentPercentage;
+  }
+
+  onRehabBudgetChange(rehabPrice) {
+    this.rehabPrice = rehabPrice;
+  }
+
+  onClosingCostsChange(closingCosts) {
+    this.closingCosts = closingCosts;
+  }
+
   get profit() {
     const profit = this.monthlyRentalIncome - this.purchasePrice - this.expenses;
     return `$ ${profit}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -38,6 +53,30 @@ class InvestmentStore {
 
     return monthlyExpenses;
   }
+
+  get cashFlow() {
+    return this.monthlyRentalIncome - this.expenses;
+  }
+
+  get annualCashFlow() {
+    return 12 * (this.monthlyRentalIncome - this.expenses);
+  }
+
+  get downPaymentPrice() {
+    return this.purchasePrice * (this.downPaymentPercentage / 100);
+  }
+
+  get totalInvestment() {
+    return this.downPaymentPrice + this.closingCosts + this.rehabPrice;
+  }
+
+  get cashOnCashROI() {
+    if (this.totalInvestment === 0) {
+      return 0;
+    }
+
+    return (this.annualCashFlow / this.totalInvestment) * 100;
+  }
 }
 
 export default decorate(InvestmentStore, {
@@ -45,12 +84,22 @@ export default decorate(InvestmentStore, {
   monthlyRentalIncome: observable,
   expenseLabels: observable,
   expensePrices: observable,
+  downPaymentPercentage: observable,
+  rehabPrice: observable,
+  closingCosts: observable,
 
-  profit: computed,
+  cashFlow: computed,
   expenses: computed,
+  annualCashFlow: computed,
+  downPaymentPrice: computed,
+  totalInvestment: computed,
+  cashOnCashROI: computed,
 
   onPurchasePriceChange: action.bound,
   onMonthlyRentalIncomeChange: action.bound,
   onExpensePriceChange: action.bound,
   onExpenseLabelChange: action.bound,
+  onDownPaymentChange: action.bound,
+  onRehabBudgetChange: action.bound,
+  onClosingCostsChange: action.bound,
 });
