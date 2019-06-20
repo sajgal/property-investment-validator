@@ -1,16 +1,16 @@
 import React from 'react';
 import { inject } from 'mobx-react';
-import formatMoney from '../lib/formatMoney';
+// import formatMoney from '../lib/formatMoney';
 
 const Results = (props) => {
   return (
     <div>
-      <div>Monthly Income: $ {formatMoney(props.monthlyRentalIncome)}</div>
-      <div>Monthly Expenses: $ {formatMoney(props.expenses)}</div>
-      <div>Monthly Cash Flow: $ {formatMoney(props.cashFlow)}</div>
+      <div>Monthly Income: $ {props.monthlyRentalIncome}</div>
+      <div>Monthly Expenses: $ {props.expenses}</div>
+      <div>Monthly Cash Flow: $ {props.cashFlow}</div>
       <br />
-      <div>Investments: $ {formatMoney(props.totalInvestment)}</div>
-      <div>Annual Cash Flow: $ {formatMoney(props.annualCashFlow)}</div>
+      <div>Investments: $ {props.totalInvestment}</div>
+      <div>Annual Cash Flow: $ {props.annualCashFlow}</div>
       <div>Cash on Cash ROI: {Math.round(props.cashOnCashROI * 100) / 100} %</div>
     </div>
   );

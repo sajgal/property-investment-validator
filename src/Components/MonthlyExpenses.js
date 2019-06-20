@@ -86,7 +86,7 @@ class MonthlyExpenses extends React.Component {
         {formItems}
         <Form.Item {...formItemLayoutWithOutLabel}>
           <Button type="dashed" onClick={this.add}>
-            <Icon type="plus" /> Add expense
+            <Icon type="plus" /> Add monthly expense
           </Button>
         </Form.Item >
       </span>
