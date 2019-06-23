@@ -1,13 +1,13 @@
 import React from 'react';
 import { Form } from 'antd';
 
-import PurchasePrice from './Components/PurchasePrice';
-import MonthlyRentalIncome from './Components/MonthlyRentalIncome';
-import Results from './Components/Results';
-import MonthlyExpenses from './Components/MonthlyExpenses';
-import DownPayment from './Components/DownPayment';
-import RehabBudget from './Components/RehabBudget';
-import ClosingCosts from './Components/ClosingCosts';
+import PurchasePrice from './PurchasePrice';
+import MonthlyRentalIncome from './MonthlyRentalIncome';
+import Results from './Results';
+import MonthlyExpenses from './MonthlyExpenses';
+import DownPayment from './DownPayment';
+import RehabBudget from './RehabBudget';
+import ClosingCosts from './ClosingCosts';
 
 class InvestmentForm extends React.Component {
   formItemLayout = {

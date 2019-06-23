@@ -1,25 +1,24 @@
-import React from 'react';
-import { configure } from 'mobx';
 import 'antd/dist/antd.css';
-import styled from 'styled-components';
+import { configure } from 'mobx';
+import { Layout } from 'antd';
 import { Provider } from 'mobx-react';
+import React from 'react';
 
+import Content from './Components/Content';
+import Footer from './Components/Footer';
+import Header from './Components/Header';
 import RootStore from './Stores/RootStore';
-import InvestmentForm from './InvestmentForm';
 
 configure({ enforceActions: "observed" });
-
-const Wrapper = styled.section`
-  width: 960px;
-  margin: 4em auto;
-`;
 
 function App() {
   return (
     <Provider rootStore={new RootStore()}>
-      <Wrapper>
-        <InvestmentForm />
-      </Wrapper>
+      <Layout className="layout">
+        <Header />
+        <Content />
+        <Footer />
+      </Layout>
     </Provider>
   );
 }
