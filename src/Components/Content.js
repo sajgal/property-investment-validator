@@ -1,11 +1,15 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import InvestmentForm from './InvestmentForm';
+import Results from './Results';
 
 const Content = () => {
   return (
     <Layout.Content style={{ padding: '50px' }}>
-      <InvestmentForm />
+      <Row>
+        <Col sm={24} md={5}><Results /></Col>
+        <Col sm={24} md={19}><InvestmentForm /></Col>
+      </Row>
     </Layout.Content>
   );
 };

@@ -37,17 +37,17 @@ class MonthlyExpenses extends React.Component {
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
-        sm: { span: 8 },
+        sm: { span: 5 },
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 16 },
+        sm: { span: 19 },
       },
     };
     const formItemLayoutWithOutLabel = {
       wrapperCol: {
         xs: { span: 24, offset: 24 },
-        sm: { span: 16, offset: 8 },
+        sm: { span: 19, offset: 5 },
       },
     };
 
@@ -68,7 +68,7 @@ class MonthlyExpenses extends React.Component {
               formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               parser={value => value.replace(/\$\s?|(,*)/g, '')}
               precision={0}
-              style={{ width: '45%', marginRight: 8 }}
+              style={{ width: '41%', marginRight: 8 }}
               onChange={(value) => this.props.onExpensePriceChange(k, value)} />
           </span>
         )}

@@ -11,7 +11,7 @@ const PurchasePrice = (props) => {
     <Form.Item label={
       <span>
         Purchase Price&nbsp;
-        <Tooltip title="Price of purchased real property.">
+        <Tooltip title="Full price of purchased real property.">
           <Icon type="question-circle-o" />
         </Tooltip>
       </span>
