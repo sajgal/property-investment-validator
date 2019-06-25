@@ -5,25 +5,27 @@ import styled from 'styled-components';
 import InvestmentForm from './InvestmentForm';
 import Results from './Results';
 
+const breakPoint = '768px';
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 300px auto;
   grid-gap: 15px;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${breakPoint}) {
     grid-auto-flow: row;
     grid-template-columns: auto;
   }
 `;
 
 const GridResults = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: ${breakPoint}) {
     order: 2;
   }
 `;
 
 const GridForm = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: ${breakPoint}) {
     order: 1;
   }
 `;
