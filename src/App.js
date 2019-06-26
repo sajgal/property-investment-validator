@@ -1,9 +1,10 @@
 import 'antd/dist/antd.css';
 import { configure } from 'mobx';
+import { createGlobalStyle } from 'styled-components'
 import { Layout } from 'antd';
 import { Provider } from 'mobx-react';
 import React from 'react';
-import { createGlobalStyle } from 'styled-components'
+import ReactGA from 'react-ga';
 
 import Content from './Components/Content';
 import Footer from './Components/Footer';
@@ -11,6 +12,9 @@ import Header from './Components/Header';
 import RootStore from './Stores/RootStore';
 
 configure({ enforceActions: "observed" });
+
+ReactGA.initialize('UA-142800921-1');
+ReactGA.pageview('/homepage');
 
 const GlobalStyle = createGlobalStyle`
   body {
