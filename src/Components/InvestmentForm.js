@@ -12,11 +12,15 @@ class InvestmentForm extends React.Component {
   formItemLayout = {
     labelCol: {
       sm: { span: 24 },
-      md: { span: 5 },
+      md: { span: 10 },
+      lg: { span: 8 },
+      xl: { span: 5 },
     },
     wrapperCol: {
       sm: { span: 24 },
-      md: { span: 19 },
+      md: { span: 14 },
+      lg: { span: 16 },
+      xl: { span: 19 },
     },
   };
 

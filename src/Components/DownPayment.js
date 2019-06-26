@@ -1,13 +1,20 @@
 import React from 'react';
-import { Form, InputNumber } from 'antd';
+import { Form, InputNumber, Icon, Tooltip } from 'antd';
 import { inject } from 'mobx-react';
 
 const DownPayment = (props) => {
   return (
-    <Form.Item label="Down payment in %">
+    <Form.Item label={
+      <span>
+        Down payment in %&nbsp;
+        <Tooltip title="Initial payment made when purchasing a property. Usually 20% of the purchase price.">
+          <Icon type="question-circle-o" />
+        </Tooltip>
+      </span>
+    }>
       <InputNumber
         onChange={downPayment => props.onDownPaymentChange(downPayment)}
-        style={{width: "100%"}}
+        style={{ width: "100%" }}
         max={100}
         min={0}
       />

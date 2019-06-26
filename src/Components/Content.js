@@ -11,6 +11,8 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 300px auto;
   grid-gap: 15px;
+  max-width: 1080px;
+  margin: 0 auto;
 
   @media (max-width: ${breakPoint}) {
     grid-auto-flow: row;
@@ -30,14 +32,18 @@ const GridForm = styled.div`
   }
 `;
 
+const ContentWrapper = styled(Layout.Content)`
+  padding: 30px;
+`;
+
 const Content = () => {
   return (
-    <Layout.Content style={{ padding: '50px' }}>
+    <ContentWrapper>
       <Grid>
         <GridResults><Results /></GridResults>
         <GridForm><InvestmentForm /></GridForm>
       </Grid>
-    </Layout.Content>
+    </ContentWrapper>
   );
 };
 

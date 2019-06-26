@@ -1,15 +1,22 @@
 import React from 'react';
-import { Form, InputNumber } from 'antd';
+import { Form, InputNumber, Icon, Tooltip } from 'antd';
 import { inject } from 'mobx-react';
 
 const RehabBudget = (props) => {
   return (
-    <Form.Item label="Rehab Budget">
+    <Form.Item label={
+      <span>
+        Rehab Budget&nbsp;
+        <Tooltip title="Cost of renovations.">
+          <Icon type="question-circle-o" />
+        </Tooltip>
+      </span>
+    }>
       <InputNumber
         formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         parser={value => value.replace(/\$\s?|(,*)/g, '')}
         onChange={rehabBudget => props.onRehabBudgetChange(rehabBudget)}
-        style={{width: "100%"}}
+        style={{ width: "100%" }}
       />
     </Form.Item>
 

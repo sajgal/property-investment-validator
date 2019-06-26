@@ -36,18 +36,24 @@ class MonthlyExpenses extends React.Component {
     const { getFieldDecorator, getFieldValue } = this.props.form;
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 5 },
+        sm: { span: 24 },
+        md: { span: 10 },
+        lg: { span: 8 },
+        xl: { span: 5 },
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 19 },
+        sm: { span: 24 },
+        md: { span: 14 },
+        lg: { span: 16 },
+        xl: { span: 19 },
       },
     };
     const formItemLayoutWithOutLabel = {
       wrapperCol: {
-        xs: { span: 24, offset: 24 },
-        sm: { span: 19, offset: 5 },
+        sm: { span: 24 },
+        md: { span: 14, offset: 10 },
+        lg: { span: 16, offset: 8 },
+        xl: { span: 19, offset: 5 },
       },
     };
 
@@ -62,7 +68,7 @@ class MonthlyExpenses extends React.Component {
       >
         {getFieldDecorator(`names[${k}]`, {})(
           <span>
-            <Input placeholder="expense label (optional)" style={{ width: '50%', marginRight: 8 }} onChange={(label) => this.props.onExpenseLabelChange(k, label)} />
+            <Input placeholder="label (optional)" style={{ width: '45%', marginRight: 8 }} onChange={(label) => this.props.onExpenseLabelChange(k, label)} />
             <InputNumber
               placeholder="expense amount"
               formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
