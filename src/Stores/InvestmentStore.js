@@ -37,11 +37,6 @@ class InvestmentStore {
     this.closingCosts = closingCosts;
   }
 
-  get profit() {
-    const profit = this.monthlyRentalIncome - this.purchasePrice - this.expenses;
-    return `$ ${profit}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-
   get expenses() {
     let monthlyExpenses = 0;
 
@@ -71,7 +66,7 @@ class InvestmentStore {
   }
 
   get cashOnCashROI() {
-    if (this.totalInvestment === 0) {
+    if (this.totalInvestment <= 0) {
       return 0;
     }
 
